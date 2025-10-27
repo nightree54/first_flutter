@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:color_palette_plus/color_palette_plus.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -43,21 +42,11 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  IconData have_Heart(int index){
-    IconData icon;
+  IconData haveHeart(int index){
     if (favorites.contains(index)) {
-      return(icon = Icons.favorite);
+      return(Icons.favorite);
     } else {
-      return(icon = Icons.favorite_border);
-    }
-  }
-
-  IconData have_Delete(int index){
-    IconData icon;
-    if (favorites.contains(index)) {
-      return(icon = Icons.delete);
-    } else {
-      return(icon = Icons.delete);
+      return(Icons.favorite_border);
     }
   }
 
@@ -74,9 +63,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // late (int, Color) color_record;
-  Map<int, Color> color_map = {};
+  Map<int, Color> colorMap = {};
   Color baseColor = Color(0xFF2196F3); // Blue
-  List list_example = [];
+  List listExample = [];
   // late double color_double;
   // late Color color_type;
   // late String color_string;
@@ -87,31 +76,28 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     for (int i = 0; i < 10; i++) {
-      color_map[i] = Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withAlpha(255);
+      colorMap[i] = Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withAlpha(255);
       // color_double = (math.Random().nextDouble() * 0xFFFFFF);
       // color_number = Color((color_double).toInt()).withAlpha(255);
       // color_string = '#${color_number.toARGB32().toRadixString(16)}';
     }
-    MaterialColor swatch = ColorPalette.generateSwatch(baseColor);
   }
 
 
 
   Widget methodReturnWidget(final int index) {
     // print(index);
-    return (color_map[index] == null)? Icon(Icons.abc_sharp) : ColoredBox(color: color_map[index]!, child: SizedBox.fromSize(size: Size.fromRadius(10)),);
+    return (colorMap[index] == null)? Icon(Icons.abc_sharp) : ColoredBox(color: colorMap[index]!, child: SizedBox.fromSize(size: Size.fromRadius(10)),);
   }
 
   Widget methodReturnText(final int index) {
     // print(index);
-    return (color_map[index] == null)? Text('null') : Text('#${color_map[1]!.toARGB32().toRadixString(16)}',);
+    return (colorMap[index] == null)? Text('null') : Text('#${colorMap[1]!.toARGB32().toRadixString(16)}',);
   }
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-
-    IconData icon = Icons.favorite_border;
 
     return Scaffold(
       appBar: AppBar(
@@ -135,13 +121,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             for(var index in appState.favorites)
                               ListTile(
                                       leading: methodReturnWidget(index),
-                                      iconColor: color_map[index],
+                                      iconColor: colorMap[index],
                                       title: methodReturnText(index),
                                       trailing: ElevatedButton.icon(
                                         onPressed: () {
                                           appState.delete(index);
                                         },
-                                        icon: Icon(appState.have_Delete(index)),
+                                        icon: Icon(Icons.delete),
                                         label: Text('delete'),
                                       )
                               )
@@ -156,17 +142,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: color_map.length,
-        itemBuilder: (final BuildContext, final int index) {
+        itemCount: colorMap.length,
+        itemBuilder: (final BuildContext context, final int index) {
           return ListTile(
             leading: methodReturnWidget(index),
-            iconColor: color_map[index],
+            iconColor: colorMap[index],
             title: methodReturnText(index),
             trailing: ElevatedButton.icon(
                 onPressed: () {
                   appState.toggleFavorite(index);
               },
-              icon: Icon(appState.have_Heart(index)),
+              icon: Icon(appState.haveHeart(index)),
               label: Text('like')
             ),
           );
