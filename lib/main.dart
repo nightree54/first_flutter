@@ -25,10 +25,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  List favorites = <int>[];
+  final List favorites = <int>[];
 
-  void toggleFavorite(int index) {
+  void toggleFavorite(final int index) {
     // print(index);
+
     if (favorites.contains(index)) {
       favorites.remove(index);
     } else {
@@ -37,19 +38,18 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void delete(int index) {
+  void delete(final int index) {
     favorites.remove(index);
     notifyListeners();
   }
 
-  IconData haveHeart(int index){
+  bool haveHeart(final int index){
     if (favorites.contains(index)) {
-      return(Icons.favorite);
+      return true;
     } else {
-      return(Icons.favorite_border);
+      return false;
     }
   }
-
 
 }
 
@@ -63,9 +63,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // late (int, Color) color_record;
-  Map<int, Color> colorMap = {};
-  Color baseColor = Color(0xFF2196F3); // Blue
-  List listExample = [];
+  final Map<int, Color> colorMap = {};
+  final Color baseColor = Color(0xFF2196F3); // Blue
+  final List listExample = [];
   // late double color_double;
   // late Color color_type;
   // late String color_string;
@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     return Scaffold(
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   context,
                   MaterialPageRoute<void>(
 
-                      builder: (BuildContext context) {
+                      builder: (final BuildContext context) {
                         var appState = context.watch<MyAppState>();
                         return Scaffold(
                           appBar: AppBar(title: const Text('Favorite')),
@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   appState.toggleFavorite(index);
               },
-              icon: Icon(appState.haveHeart(index)),
+              icon: Icon(((appState.haveHeart(index)) == true)? Icons.favorite : Icons.favorite_border),
               label: Text('like')
             ),
           );
