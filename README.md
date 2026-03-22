@@ -30,6 +30,7 @@ Flutterを用いて作成した、初めてのアプリケーションです。
 
 ### Favoriteページ
 ![Favorite Page](https://github.com/nightree54/project-images/blob/main/first_flutter_favourite_page.png)
+
 ---
 
 ##🛠️ 使用技術
