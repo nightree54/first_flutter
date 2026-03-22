@@ -29,10 +29,10 @@ Flutterを用いて作成した、初めてのアプリケーションです。
 ![Colors Page](https://github.com/nightree54/project-images/blob/main/first_flutter_colors_page.png)
 
 ### Favoriteページ
-![Favorite Page](images/favorite_page.pnghttps://github.com/nightree54/project-images/blob/main/first_flutter_favourite_page.png)
+![Favorite Page](https://github.com/nightree54/project-images/blob/main/first_flutter_favourite_page.png)
 ---
 
-## 🛠️ 使用技術
+##🛠️ 使用技術
 
 - Flutter
 - Dart
